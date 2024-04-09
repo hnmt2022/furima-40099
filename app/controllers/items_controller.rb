@@ -3,6 +3,7 @@ class ItemsController < ApplicationController
 
   def index
   end
+
   def new
     @item = Item.new
   end
@@ -16,12 +17,10 @@ class ItemsController < ApplicationController
     end
   end
 
-
-
   private
 
   def item_params
-    params.require(:item).permit(:item_name, :item_info, :price, :category_id, :sales_status_id, :shipping_fee_id, :item_prefecture_id, :scheduled_delivery_id, :image).merge(user_id: current_user.id)
+    params.require(:item).permit(:item_name, :item_info, :price, :category_id, :sales_status_id, :shipping_fee_id,
+                                 :item_prefecture_id, :scheduled_delivery_id, :image).merge(user_id: current_user.id)
   end
-
 end

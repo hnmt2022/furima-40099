@@ -1,5 +1,10 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user!
+
   before_action :set_item
+  before_action :contributor_confirmation
+  before_action :sold_out_confirmation
+
 
   def index
     
@@ -37,6 +42,14 @@ class OrdersController < ApplicationController
 
   def item_params
     params.require(:item).permit(:price)
+  end
+
+  def contributor_confirmation
+    redirect_to root_path if current_user == @item.user
+  end
+
+  def sold_out_confirmation
+    redirect_to root_path if @item.order.present?
   end
 
 end

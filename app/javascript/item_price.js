@@ -11,16 +11,7 @@ function itemPrice() {
 
   })
 
-
-
- 
- 
-
-
-
-
-
-
 }
 
 window.addEventListener('turbo:load', itemPrice);
+window.addEventListener('turbo:render', itemPrice);
